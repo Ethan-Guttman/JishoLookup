@@ -1,0 +1,26 @@
+{
+    "manifest_version": 2,
+    "name": "Jisho Lookup",
+    "version": "1.0",
+  
+    "description": "On right click allows option to open japanese text and auto search it in jisho.org",
+  
+    "icons": {
+      "48": "icons/jisholookup48.svg",
+      "96": "icons/jisholookup96.svg"
+    },
+
+    "background": {
+      "scripts": ["jishoLookup.js"] 
+    },
+
+    "permissions": [
+      "contextMenus",
+      "bookmarks",
+      "contextualIdentities",
+      "cookies",
+      "menus",
+      "activeTab"
+    ]
+  }
+  

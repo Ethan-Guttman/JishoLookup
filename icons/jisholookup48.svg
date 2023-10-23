@@ -1,0 +1,9 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 48 48"
+  width="48"
+  height="48">
+  <rect width="23" height="48" fill="green" />
+  <rect x="25" width="23" height="48" fill="green" />
+  <text textLength="90%" font-size="2em" class="big" x="10%" y="70%" fill="white">JL</text>
+</svg>
