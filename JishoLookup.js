@@ -13,6 +13,15 @@ function onCreated() {
   }
 }
 
+/*
+  Used to check whether a string contains any Japanese characters
+*/
+function containsJapanese(sequence) {
+  //console.log('check for japanese');
+  return sequence.match(/[\u3400-\u9FBF]/) != null;
+}
+
+
 
 
 // Create jisho lookup context menu
@@ -25,11 +34,11 @@ browser.contextMenus.create({
 
 // Code for when jisho lookup is clicked (currently just searches given text)
 browser.contextMenus.onClicked.addListener((info, tab) => {
+  // let hasJapanese = containsJapanese(info.selectionText);
   switch (info.menuItemId) {
     case "jisho-lookup":
-        browser.windows.create({url: `https://www.jisho.org/search/${info.selectionText}`})
+        browser.tabs.create({url: `https://www.jisho.org/search/${info.selectionText}`})
         break;
-    // …
-}
+  }
 });
 
