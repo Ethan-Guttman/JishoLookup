@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Jisho Lookup",
-    "version": "1.0",
+    "version": "1.1",
   
     "description": "On right click allows option to open japanese text and auto search it in jisho.org",
   
