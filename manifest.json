@@ -11,16 +11,25 @@
     },
 
     "background": {
-      "scripts": ["jishoLookup.js"] 
+      "scripts": ["JishoLookup.js"] 
+    },
+
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+      }
+    ],
+
+    "options_ui": {
+      "page": "options.html",
+      "browser_style": true
     },
 
     "permissions": [
       "contextMenus",
-      "bookmarks",
-      "contextualIdentities",
-      "cookies",
-      "menus",
-      "activeTab"
+      "activeTab",
+      "tabs"
     ]
   }
   
