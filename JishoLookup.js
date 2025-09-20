@@ -40,7 +40,7 @@ browser.contextMenus.create({
 }, onCreated);
 
 
-console.log("Context menu created");
+// console.log("Context menu created");
 
 // Handle context menu visibility based on selected text
 browser.contextMenus.onShown.addListener(async (info, tab) => {
@@ -77,10 +77,29 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
         console.warn("Could not retrieve selection, using fallback:", e);
         selectedText = info.selectionText || "";
       }
-      
+
       if (selectedText && containsJapanese(selectedText)) {
         const url = `https://www.jisho.org/search/${encodeURIComponent(selectedText)}`;
-        browser.tabs.create({url: url, index: tab.index + 1});
+        
+        try {
+          // Get all tabs in the current window
+          const tabs = await browser.tabs.query({ windowId: tab.windowId });
+          const rightTab = tabs.find(t => t.index === tab.index + 1);
+          
+          if (rightTab && rightTab.url.includes('jisho.org')) {
+            // If the tab to the right is already jisho.org, update it with the new search
+            console.log("Updating existing jisho.org tab with new search");
+            browser.tabs.update(rightTab.id, { url: url, active: true });
+          } else {
+            // Otherwise, create a new tab to the right
+            console.log("Creating new jisho.org tab");
+            browser.tabs.create({ url: url, index: tab.index + 1 });
+          }
+        } catch (error) {
+          console.error("Error handling tab creation:", error);
+          // Fallback: just create a new tab
+          browser.tabs.create({ url: url, index: tab.index + 1 });
+        }
       }
       break;
   }
